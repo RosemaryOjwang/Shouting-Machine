@@ -10,19 +10,47 @@ function getAndSetValues() {
 }
 //This function will increase the fontsize of the out with every submission
 function increasingFontSize() {
-   getAndSetValues();
-   let fontSize = formInput.style.fontSize = "1.8em"
-   let increamentFontSize = 0.2;
+  getAndSetValues();
+  let sizeValue = increase();
+    let size = parseInt(sessionStorage.getItem("size"));
+    sessionStorage.setItem("size", sizeValue);
+ return size;
+
+  
+  //let text = document.getElementById("whatYouSaid").innerText;
+   //sessionStorage.setItem("size", "25");
+   //console.log(size);
+   //let newFontSize = parseInt(sessionStorage.getItem("size")) + 5;
+   //console.log(newFontSize);
+   //document.getElementById("whatYouSaid").innerText;
+   //let text = document.querySelector("div#yourOutput"); 
+   //text.style.fontSize = size + "px";
+  }
+  function increase(){
+     let num = 25;
+     num += 5;
+     sessionStorage.setItem("num", num);
   }
 
 window.onload = function() {
   let form = document.querySelector("form");
   form.onsubmit = function(event)  {
     event.preventDefault();
-    getAndSetValues();
-    //increasingFontSize();
+    let size = increasingFontSize();
+    let text = document.getElementById("whatYouSaid"); 
+    //targetText = text.innerText
+
+    console.log(text.innerText);
+    size++;
+    sessionStorage.setItem("size",size);
+    size = sessionStorage.getItem("size");
+    ++size;
+  
+    console.log(size);
+   text.style.fontSize = size + "px";
 
     document.querySelector("div#yourOutput").removeAttribute("class");
+
   };
   
 };
