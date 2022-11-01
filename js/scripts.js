@@ -9,10 +9,17 @@ function getAndSetValues() {
   document.querySelector("span#whatYouSaid").innerText = formInput;
 }
 //This function will increase the fontsize of the out with every submission
-function increasingFontSize() {
+/*function increasingFontSize() {
   getAndSetValues();
+  sessionStorage.setItem("number", 25);
+  let newSize = parseInt(sessionStorage.getItem("number"));
+  console.log(newSize);
+  //newSize = increase();
+  sessionStorage.setItem("number", newSize + 5);*/
+
+  /*getAndSetValues();
   let sizeValue = increase();
-    let size = parseInt(sessionStorage.getItem("size"));
+    let size = parseInt(sessionStorage.getItem("num"));
     sessionStorage.setItem("size", sizeValue);
  return size;
 
@@ -25,29 +32,34 @@ function increasingFontSize() {
    //document.getElementById("whatYouSaid").innerText;
    //let text = document.querySelector("div#yourOutput"); 
    //text.style.fontSize = size + "px";
-  }
-  function increase(){
+
+  }*/
+  /*function increase(){
      let num = 25;
-     num += 5;
-     sessionStorage.setItem("num", num);
-  }
+     num++;
+    return sessionStorage.setItem("num", num);
+  }*/
 
 window.onload = function() {
   let form = document.querySelector("form");
   form.onsubmit = function(event)  {
     event.preventDefault();
-    let size = increasingFontSize();
+    getAndSetValues();
     let text = document.getElementById("whatYouSaid"); 
     //targetText = text.innerText
 
-    console.log(text.innerText);
-    size++;
-    sessionStorage.setItem("size",size);
+    //console.log(text.innerText);
+    //size++;
+    //sessionStorage.getItem("size",size);
+    //size++;
+    //sessionStorage.setItem("size", 20);
+    let size;
     size = sessionStorage.getItem("size");
-    ++size;
+    size++;
   
     console.log(size);
    text.style.fontSize = size + "px";
+   size = sessionStorage.setItem("size", size);
 
     document.querySelector("div#yourOutput").removeAttribute("class");
 
