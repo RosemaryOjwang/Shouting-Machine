@@ -1,6 +1,13 @@
 .hide{
   display: none;
 }
-#whatYouSaid  {
+#whatYouSaid{
     color: #FF0000;
+    margin-left: 5%;
+}
+form{
+margin-left: 5%;
+}
+.form-control{
+  width: 150px;
 }
