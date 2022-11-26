@@ -1,68 +1,43 @@
 //User interface logic
+
+
 function getAndSetValues() {
   //Here we get the input from the form
   let formInput = document.getElementById("typeSomething").value;
   formInput = formInput.toUpperCase();
   console.log(formInput);
-
   //We set the yourOutput variable to the value from the form
   document.querySelector("span#whatYouSaid").innerText = formInput;
 }
-//This function will increase the fontsize of the out with every submission
-/*function increasingFontSize() {
-  getAndSetValues();
-  sessionStorage.setItem("number", 25);
-  let newSize = parseInt(sessionStorage.getItem("number"));
-  console.log(newSize);
-  //newSize = increase();
-  sessionStorage.setItem("number", newSize + 5);*/
+//function to increment text font size after every submission of the form
+function increaseFontSize() {
+  let textSize = 10;
+  let text = document.getElementById("whatYouSaid");
+  textSize = sessionStorage.getItem("textSize");
+  textSize += 2;
+  text.style.fontSize = textSize + "px"; 
+  textSize = sessionStorage.setItem("textSize", textSize);
+  return textSize;
+}
 
-  /*getAndSetValues();
-  let sizeValue = increase();
-    let size = parseInt(sessionStorage.getItem("num"));
-    sessionStorage.setItem("size", sizeValue);
- return size;
-
-  
-  //let text = document.getElementById("whatYouSaid").innerText;
-   //sessionStorage.setItem("size", "25");
-   //console.log(size);
-   //let newFontSize = parseInt(sessionStorage.getItem("size")) + 5;
-   //console.log(newFontSize);
-   //document.getElementById("whatYouSaid").innerText;
-   //let text = document.querySelector("div#yourOutput"); 
-   //text.style.fontSize = size + "px";
-
-  }*/
-  /*function increase(){
-     let num = 25;
-     num++;
-    return sessionStorage.setItem("num", num);
-  }*/
-
-window.onload = function() {
+//function to display alert on increasing font size of text
+function alertOnIncreasingFont()  {
+  window.alert("Beware of increasing font size");
   let form = document.querySelector("form");
-  form.onsubmit = function(event)  {
+  //stop event listener after displaying alert once
+  form.removeEventListener("submit", alertOnIncreasingFont);
+}
+
+window.addEventListener("load", function () {
+  let form = document.querySelector("form")
+  form.addEventListener("submit", function (event) {
     event.preventDefault();
-    getAndSetValues();
-    let text = document.getElementById("whatYouSaid"); 
-    //targetText = text.innerText
-
-    //console.log(text.innerText);
-    //size++;
-    //sessionStorage.getItem("size",size);
-    //size++;
-    //sessionStorage.setItem("size", 20);
-    let size;
-    size = sessionStorage.getItem("size");
-    size++;
-  
-    console.log(size);
-   text.style.fontSize = size + "px";
-   size = sessionStorage.setItem("size", size);
-
+    getAndSetValues(); 
+    increaseFontSize();
     document.querySelector("div#yourOutput").removeAttribute("class");
 
-  };
-  
-};
+  });
+
+  form.addEventListener("submit", alertOnIncreasingFont);
+
+});
